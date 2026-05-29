@@ -1,12 +1,12 @@
-from .variables import isRunning
+from .variables import _isRunning
 
 
 def running():
-    if isRunning:
+    if _isRunning:
         count = 0
-        while isRunning:
+        while _isRunning:
             if count >= 100:
-                isRunning = False
+                _isRunning = False
             count += 1
             pass
     pass
