@@ -1,1 +1,1 @@
-import easypygame.Graphics.Static
+import easypygame.Graphics.Static.Circle

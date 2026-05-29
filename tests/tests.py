@@ -1,3 +1,3 @@
 import easypygame as esypy
 
-esypy.Graphics.Static.circle.circle()
+esypy.Graphics.Static.Circle.circle()
