@@ -1,3 +1,3 @@
-from easypygame.main import hello
+import easypygame as esypy
 
-print(hello())
+esypy.Graphics.Static.circle.circle()
