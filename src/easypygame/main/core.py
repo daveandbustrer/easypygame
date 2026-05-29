@@ -1,9 +1,24 @@
 import pygame as pyg
-import variables as var
+from . import variables as var
 
 
-# innitiolizes the whole program
-def init(width=300, height=300, bg="white", background=None):
+# sets the variables
+def _set_pygame_variables():
+    var._display = pyg.display
+    time = var._time = pyg.time
+    var._events = pyg.events
+    var._clock = time.Clock
+    pass
+
+
+# initilizes the whole program
+def init(
+    width=300,
+    height=300,
+    bg="white",
+    background=None,
+    frame=60,
+):
     # sets the abbr to the main word
     if background is None:
         background = bg
@@ -11,8 +26,10 @@ def init(width=300, height=300, bg="white", background=None):
     # display variable settings
     var._height = height
     var._width = width
+    var._size = (width, height)
     var.background = background
     var.bg = background
+    var.frames = frame
 
     # misc variable settings
     var._isRunning = True
@@ -23,6 +40,9 @@ def init(width=300, height=300, bg="white", background=None):
     # temperary until futher notice
     if numfail > 0:
         print("pygames has failed to import all nessasary modules")
+
+    # sets the rest of the needed variables
+    _set_pygame_variables()
 
     # returns the passes and fails
     return (numpass, numfail)
