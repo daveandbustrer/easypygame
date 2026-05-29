@@ -1,1 +1,3 @@
-import easypygame.Graphics.Static.Circle
+from . import circle
+
+__all__ = ["circle"]

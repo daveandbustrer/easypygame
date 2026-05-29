@@ -1,1 +1,1 @@
-import easypygame.Graphics.Static
+from . import static
