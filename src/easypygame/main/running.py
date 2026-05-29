@@ -19,15 +19,13 @@ def run():
                 if event.type == pyg.QUIT:
                     isRunning = False
 
-            # fill the screen with a color to wipe away anything from last frame
             screen.fill(var.background)
 
             # RENDER YOUR GAME HERE
 
-            # flip() the display to put your work on screen
             display.flip()
 
-            clock.tick(var.frames)  # limits FPS to 60
+            var._dt = clock.tick(var.frames) / 1000
 
         pyg.quit()
     pass

@@ -15,6 +15,9 @@ _time = None
 _events = None
 _clock = None
 
+# control variable
+_dt = 0
+
 
 """ public """
 background = None

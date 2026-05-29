@@ -6,7 +6,7 @@ from . import variables as var
 def _set_pygame_variables():
     var._display = pyg.display
     time = var._time = pyg.time
-    var._events = pyg.events
+    var._events = pyg.event
     var._clock = time.Clock
     pass
 
@@ -33,6 +33,7 @@ def init(
 
     # misc variable settings
     var._isRunning = True
+    var._dt
 
     # checks if any modules fail to load in
     numpass, numfail = pyg.init()
@@ -56,3 +57,7 @@ def getHeight():
 # gives the width to the user; not allowing any changes to the width
 def getWidth():
     return var._width
+
+
+def getDelta():
+    return var._dt
