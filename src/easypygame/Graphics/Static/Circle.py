@@ -1,2 +1,3 @@
-def circle():
-    print("circle")
+class circle:
+    def __init__():
+        pass
