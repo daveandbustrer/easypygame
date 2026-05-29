@@ -1,9 +1,10 @@
 [build-system]
-requires = ["hatchling >= 1.26"]
-build-backend = "hatchling.build"
+requires = ["setuptools>=68", "setuptools_scm"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "Blu_easy_pygame"
-version = "0.0.1"
+dynamic = ["version"]
 authors = [
   { name="Praneel Shanmugam", email="praneelcatchu@gmail.com" },
 ]
@@ -15,4 +16,9 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 license = "MIT"
-license-files = ["LICEN[CS]E*"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools_scm]
+write_to = "src/easypygame/_version.py"
