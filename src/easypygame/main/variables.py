@@ -15,9 +15,13 @@ _time = None
 _events = None
 _clock = None
 
-# control variable
+# control variables
 _dt = 0
-
+_func = {
+    "main": None,
+}
+# shape variables
+_shapes = []
 
 """ public """
 background = None

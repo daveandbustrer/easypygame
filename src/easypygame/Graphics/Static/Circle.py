@@ -1,15 +1,9 @@
+from .base import shape
 from easypygame.main import variables as var
 
 
-class circle:
+class circle(shape):
     def __init__(self, x, y, radius, color="black"):
-        self._x = x
-        self._y = y
-        self.radius = radius
-        self.color = "black"
-
-    @x
-    def x(self):
-        return self._x
-
-        pass
+        super().__init__(x, y, radius, radius, color)
+        self.type = "circle"
+        var._shapes.append(self)
