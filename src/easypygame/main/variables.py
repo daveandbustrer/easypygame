@@ -14,6 +14,7 @@ _display = None
 _time = None
 _events = None
 _clock = None
+_draw = None
 
 # control variables
 _dt = 0

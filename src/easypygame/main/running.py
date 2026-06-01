@@ -1,4 +1,5 @@
 from . import variables as var
+from . import core
 import pygame as pyg
 
 
@@ -22,6 +23,7 @@ def run():
 
             screen.fill(var.background)
 
+            core.draw(screen)
             # runs the main function or the while loop function
             if funcs["main"]:
                 func["main"]()

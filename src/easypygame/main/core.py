@@ -8,6 +8,7 @@ def _set_pygame_variables():
     time = var._time = pyg.time
     var._events = pyg.event
     var._clock = time.Clock
+    var._draw = pyg.draw
     pass
 
 
@@ -61,3 +62,21 @@ def getWidth():
 
 def getDelta():
     return var._dt
+
+
+def draw(screen):
+    shapes = var._shapes
+    pydraw = var._draw
+    for obj in shapes:
+        if obj.type == "circle":
+            pydraw.circle(screen, obj.color, pyg.Vector2(obj.x, obj.y), obj.radius)
+
+
+def bind(funcType, func):
+    if funcType in var._func:
+        var._func[funcType] = func
+
+
+def unbind(funcType):
+    if funcType in var._func:
+        var._func[funcType] = None

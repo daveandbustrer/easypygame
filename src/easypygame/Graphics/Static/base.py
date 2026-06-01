@@ -1,13 +1,15 @@
 class shape:
-    def __init__(self, x, y, width, height, color):
+    def __init__(self, x, y, width, height, color, screen):
+        self._screen = screen
         self._x = x
         self._y = y
-        self.width = width
-        self.height = height
+        self._width = width
+        self._height = height
         self._left = x - width
         self._right = x + width
         self._top = y - height
         self._bottom = y + height
+        self.color = color
 
     @property
     def x(self):
@@ -16,8 +18,8 @@ class shape:
     @x.setter
     def x(self, value):
         self._x = value
-        self._left = value - self.width
-        self._right = value + self.width
+        self._left = value - self._width
+        self._right = value + self._width
 
     @property
     def left(self):
@@ -25,8 +27,8 @@ class shape:
 
     @left.setter
     def left(self, value):
-        self._x = value + self.width
-        self._right = value + self.width + self.width
+        self._x = value + self._width
+        self._right = value + self._width + self._width
         self._left = value
 
     @property
@@ -35,9 +37,9 @@ class shape:
 
     @right.setter
     def right(self, value):
-        self._x = value - self.width
+        self._x = value - self._width
         self._right = value
-        self._left = value - self.width - self.width
+        self._left = value - self._width - self._width
 
     @property
     def y(self):
