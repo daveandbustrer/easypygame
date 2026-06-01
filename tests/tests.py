@@ -1,12 +1,18 @@
-import easypygame as esypy
+import easypygame as epy
 
-esypy.init()
-x = esypy.graphics.static.circle(100, 100, 10)
+epy.init(width=600, height=600)
+x = epy.graphics.static.circle(100, 100, 100)
+width = epy.getWidth()
 
 
 def main():
     x.x += 1
+    x.y += 1
+    if x.left > width:
+        x.right = 0
+    if x.top > width:
+        x.bottom = 0
 
 
-esypy.bind("main", main)
-esypy.run()
+epy.bind("main", main)
+epy.run()

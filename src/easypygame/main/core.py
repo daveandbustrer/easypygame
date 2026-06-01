@@ -34,7 +34,6 @@ def init(
 
     # misc variable settings
     var._isRunning = True
-    var._dt
 
     # checks if any modules fail to load in
     numpass, numfail = pyg.init()

@@ -44,3 +44,29 @@ class shape:
     @property
     def y(self):
         return self._y
+
+    @y.setter
+    def y(self, value):
+        self._y = value
+        self._top = value - self._height
+        self._bottom = value + self._height
+
+    @property
+    def top(self):
+        return self._top
+
+    @top.setter
+    def top(self, value):
+        self._top = value
+        self._y = value + self._height
+        self._bottom = value + self._height + self._height
+
+    @property
+    def bottom(self):
+        return self._bottom
+
+    @bottom.setter
+    def bottom(self, value):
+        self._bottom = value
+        self._y = value - self._height
+        self._top = value - self._height - self._height

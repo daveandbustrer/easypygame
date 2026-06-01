@@ -26,7 +26,7 @@ def run():
             core.draw(screen)
             # runs the main function or the while loop function
             if funcs["main"]:
-                func["main"]()
+                funcs["main"]()
 
             # puts evrything on the screen
             display.flip()
