@@ -90,3 +90,7 @@ def bind(funcType, func):
 def unbind(funcType):
     if funcType in var._func:
         var._func[funcType] = None
+
+
+def stop():
+    var._isRunning = False

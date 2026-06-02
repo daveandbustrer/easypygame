@@ -1,13 +1,31 @@
 from . import variables as var
 from . import core
 import pygame as pyg
+import inspect as ins
+
+
+def get_click_event(event):
+    parameter = {}
+    if event.touch:
+        parameter["touch"] = event.touch
+    if event.window:
+        parameter["window"] = event.window
+    parameter["pos"] = event.pos
+
+    return parameter
+
+
+def run_func(func, parameter):
+    sig = ins.signature(func)
+    if sig.parameters:
+        func(parameter)
+    else:
+        func()
 
 
 def run():
 
-    isRunning = var._isRunning
-
-    if isRunning is not None:
+    if var._isRunning is not None:
 
         display = var._display
         clock = var._clock()
@@ -15,18 +33,33 @@ def run():
 
         screen = var._screen = display.set_mode(var._size)
         funcs = var._func
-        while isRunning:
+        while var._isRunning:
 
             for event in events.get():
                 if event.type == pyg.QUIT:
-                    isRunning = False
+                    var._isRunning = False
+                if event.type == pyg.MOUSEBUTTONDOWN:
+                    parameter = get_click_event(event)
+                    if funcs["mouseDown"]:
+                        run_func(funcs["mouseDown"], parameter)
+                    if event.button == 1:
+                        if funcs["leftMouseDown"]:
+                            run_func(funcs["leftMouseDown"], parameter)
+                    if event.button == 2:
+                        if funcs["middleMouseDown"]:
+                            run_func(funcs["middleMouseDown"], parameter)
+                    if event.button == 3:
+                        if funcs["rightMouseDown"]:
+                            run_func(funcs["rightMouseDown"], parameter)
 
             screen.fill(var.background)
 
             core.draw(screen)
-            # runs the main function or the while loop function
+
             if funcs["main"]:
                 funcs["main"]()
+
+            core.draw(screen)
 
             # puts evrything on the screen
             display.flip()

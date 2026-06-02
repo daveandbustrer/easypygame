@@ -20,6 +20,10 @@ _draw = None
 _dt = 0
 _func = {
     "main": None,
+    "leftMouseDown": None,
+    "rightMouseDown": None,
+    "middleMouseDown": None,
+    "mouseDown": None,
 }
 # shape variables
 _shapes = []
