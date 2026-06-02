@@ -68,7 +68,18 @@ def draw(screen):
     pydraw = var._draw
     for obj in shapes:
         if obj.type == "circle":
-            pydraw.circle(screen, obj.color, pyg.Vector2(obj.x, obj.y), obj.radius)
+            pydraw.circle(
+                obj._screen if not obj._screen is None else screen,
+                obj.color,
+                pyg.Vector2(obj.x, obj.y),
+                obj.radius,
+            )
+        if obj.type == "rect":
+            pydraw.rect(
+                obj._screen if not obj._screen is None else screen,
+                obj.color,
+                (obj.x, obj.y, obj.width, obj.height),
+            )
 
 
 def bind(funcType, func):

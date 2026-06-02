@@ -1,3 +1,6 @@
+from easypygame.main import variables as var
+
+
 class shape:
     def __init__(self, x, y, width, height, color, screen):
         self._screen = screen

@@ -1,3 +1,4 @@
 from .circle import circle
+from .rectangle import rect
 
-__all__ = ["circle"]
+__all__ = ["circle", "rect"]

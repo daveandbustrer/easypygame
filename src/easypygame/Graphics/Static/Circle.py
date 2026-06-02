@@ -7,4 +7,3 @@ class circle(shape):
         super().__init__(x, y, radius, radius, color, None)
         self.type = "circle"
         self.radius = radius
-        var._shapes.append(self)
