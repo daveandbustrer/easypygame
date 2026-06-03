@@ -22,7 +22,8 @@ def main():
 
 
 def click(event):
-    lines.points.append(event)
+    x, y = event
+    lines.add_point(x, y)
 
 
 epy.bind("main", main)
