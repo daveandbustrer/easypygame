@@ -13,7 +13,6 @@ height = epy.getWidth()
 def main():
     x.angle += 1
     y.angle += 350
-    lines.angle += 1
     x.x += 1
     y.y += 1
     if y.y > height or x.x > width:

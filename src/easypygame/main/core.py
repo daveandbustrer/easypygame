@@ -75,7 +75,7 @@ def draw(screen):
         elif obj._type == "line":
             if len(obj.points) < 2:
                 continue
-            pyg.draw.lines(screen, obj.color, obj._line__closed, obj.points)
+            pyg.draw.lines(screen, obj.color, obj._line_closed, obj.points)
 
 
 def bind(funcType, func):
