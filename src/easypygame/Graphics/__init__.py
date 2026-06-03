@@ -1,3 +1,3 @@
-from . import static
+from . import simple
 
-__all__ = ["static"]
+__all__ = ["simple"]
