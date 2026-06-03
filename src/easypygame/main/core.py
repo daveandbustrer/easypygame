@@ -68,9 +68,14 @@ def draw(screen):
     shapes = var._shapes
     pydraw = var._draw
     for obj in shapes:
-        rotated = var._transform.rotate(obj._surf, obj.angle)
-        rect = rotated.get_rect(center=(obj.x, obj.y))
-        screen.blit(rotated, rect)
+        if obj._type == "shape":
+            rotated = var._transform.rotate(obj._surf, obj.angle)
+            rect = rotated.get_rect(center=(obj.x, obj.y))
+            screen.blit(rotated, rect)
+        elif obj._type == "line":
+            if len(obj.points) < 2:
+                continue
+            pyg.draw.lines(screen, obj.color, obj._line__closed, obj.points)
 
 
 def bind(funcType, func):
