@@ -1,18 +1,20 @@
 import easypygame as epy
 
 epy.init(width=600, height=600)
-x = epy.graphics.rect(100, 100, 200, 200)
+x = epy.graphics.rect(100, 100, 100, 100)
+y = epy.graphics.ellipse(100, 100, 100, 90)
 width = epy.getWidth()
 height = epy.getWidth()
 
 
 def main():
     x.angle += 1
+    y.angle += 1
     x.x += 1
-    x.y += 1
-    if x.y > height or x.x > width:
+    y.y += 1
+    if y.y > height or x.x > width:
         x.x = 0
-        x.y = 0
+        y.y = 0
 
 
 epy.bind("main", main)
