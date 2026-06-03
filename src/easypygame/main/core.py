@@ -9,6 +9,7 @@ def _set_pygame_variables():
     var._events = pyg.event
     var._clock = time.Clock
     var._draw = pyg.draw
+    var._transform = pyg.transform
     pass
 
 
@@ -67,28 +68,9 @@ def draw(screen):
     shapes = var._shapes
     pydraw = var._draw
     for obj in shapes:
-        if obj.type == "circle":
-            pydraw.circle(
-                obj._screen if not obj._screen is None else screen,
-                obj.color,
-                pyg.Vector2(obj.x, obj.y),
-                obj.radius,
-            )
-        if obj.type == "rect":
-            pydraw.rect(
-                obj._screen if not obj._screen is None else screen,
-                obj.color,
-                (obj.x, obj.y, obj.width, obj.height),
-            )
-        if obj.type == "line":
-            if len(obj.points) >= 2:
-                pydraw.lines(
-                    obj._screen if not obj._screen is None else screen,
-                    obj.color,
-                    False,
-                    obj.points,
-                    width=obj.width,
-                )
+        rotated = var._transform.rotate(obj._surf, obj.angle)
+        rect = rotated.get_rect(center=(obj.x, obj.y))
+        screen.blit(rotated, rect)
 
 
 def bind(funcType, func):

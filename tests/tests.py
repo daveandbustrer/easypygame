@@ -1,30 +1,19 @@
 import easypygame as epy
 
 epy.init(width=600, height=600)
-x = epy.graphics.simple.rect(100, 100, 100, 100)
-y = epy.graphics.simple.circle(100, 100, 50)
-v = epy.graphics.simple.line([])
+x = epy.graphics.rect(100, 100, 200, 200)
 width = epy.getWidth()
-height = epy.getHeight()
-line_list = []
+height = epy.getWidth()
 
 
 def main():
+    x.angle += 1
     x.x += 1
-    y.y += 1
-    if x.left > width:
-        x.right = 0
-    if y.top > height:
-        y.bottom = 0
-
-
-def click(event):
-    print(event)
-    line_list.append(event)
-    v.points = line_list
-    pass
+    x.y += 1
+    if x.y > height or x.x > width:
+        x.x = 0
+        x.y = 0
 
 
 epy.bind("main", main)
-epy.bind("leftMouseDown", click)
 epy.run()

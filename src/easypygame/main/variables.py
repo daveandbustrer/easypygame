@@ -15,6 +15,8 @@ _time = None
 _events = None
 _clock = None
 _draw = None
+_surface = None
+_transform = None
 
 # control variables
 _dt = 0

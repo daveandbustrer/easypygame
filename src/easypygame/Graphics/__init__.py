@@ -1,3 +1,3 @@
-from . import simple
+from .rect import rect
 
-__all__ = ["simple"]
+__all__ = ["rect"]
