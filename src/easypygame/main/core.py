@@ -80,6 +80,15 @@ def draw(screen):
                 obj.color,
                 (obj.x, obj.y, obj.width, obj.height),
             )
+        if obj.type == "line":
+            if len(obj.points) >= 2:
+                pydraw.lines(
+                    obj._screen if not obj._screen is None else screen,
+                    obj.color,
+                    False,
+                    obj.points,
+                    width=obj.width,
+                )
 
 
 def bind(funcType, func):

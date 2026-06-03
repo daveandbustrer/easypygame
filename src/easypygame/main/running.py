@@ -10,9 +10,11 @@ def get_click_event(event):
         parameter["touch"] = event.touch
     if event.window:
         parameter["window"] = event.window
-    parameter["pos"] = event.pos
-
-    return parameter
+    if parameter:
+        parameter["pos"] = event.pos
+        return parameter
+    else:
+        return event.pos
 
 
 def run_func(func, parameter):
@@ -40,17 +42,20 @@ def run():
                     var._isRunning = False
                 if event.type == pyg.MOUSEBUTTONDOWN:
                     parameter = get_click_event(event)
-                    if funcs["mouseDown"]:
-                        run_func(funcs["mouseDown"], parameter)
-                    if event.button == 1:
-                        if funcs["leftMouseDown"]:
-                            run_func(funcs["leftMouseDown"], parameter)
-                    if event.button == 2:
-                        if funcs["middleMouseDown"]:
-                            run_func(funcs["middleMouseDown"], parameter)
-                    if event.button == 3:
-                        if funcs["rightMouseDown"]:
-                            run_func(funcs["rightMouseDown"], parameter)
+                    if event.button != 4 or event.button != 5:
+                        if funcs["mouseDown"]:
+                            run_func(funcs["mouseDown"], parameter)
+                        if event.button == 1:
+                            if funcs["leftMouseDown"]:
+                                run_func(funcs["leftMouseDown"], parameter)
+                        if event.button == 2:
+                            if funcs["middleMouseDown"]:
+                                run_func(funcs["middleMouseDown"], parameter)
+                        if event.button == 3:
+                            if funcs["rightMouseDown"]:
+                                run_func(funcs["rightMouseDown"], parameter)
+                    else:
+                        pass
 
             screen.fill(var.background)
 
