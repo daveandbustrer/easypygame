@@ -1,9 +1,9 @@
 import easypygame as epy
 
 epy.init(width=600, height=600)
-x = epy.graphics.static.rect(100, 100, 100, 100)
-y = epy.graphics.static.circle(100, 100, 50)
-v = epy.graphics.static.line([])
+x = epy.graphics.simple.rect(100, 100, 100, 100)
+y = epy.graphics.simple.circle(100, 100, 50)
+v = epy.graphics.simple.line([])
 width = epy.getWidth()
 height = epy.getHeight()
 line_list = []
