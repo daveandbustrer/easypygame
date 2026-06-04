@@ -71,7 +71,14 @@ def draw(screen):
         elif obj._type == "line":
             if len(obj.points) < 2:
                 continue
-            pyg.draw.lines(screen, obj.color, obj._line_closed, obj.points)
+            pyg.draw.lines(screen, obj.color, obj._line_closed, obj.points, obj.width)
+        elif obj._type == "poly":
+            if len(obj.points) < 3:
+                continue
+            obj._polygon__set_surf()
+            rotated = var._transform.rotate(obj._surf, obj.angle)
+            rect = rotated.get_rect(center=(var._width / 2, var._height / 2))
+            screen.blit(rotated, rect)
 
 
 def bind(funcType, func):
