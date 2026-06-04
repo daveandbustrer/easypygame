@@ -13,7 +13,7 @@ xy = []
 
 def main(dt):
     print(dt)
-    xy.append(epy.graphics.ellipse(x.x + y.angle, x.y - x.angle, 100, 50))
+    # xy.append(epy.graphics.ellipse(x.x + y.angle, x.y - x.angle, 100, 50))
     lines.angle += 10 * dt
     for obj in xy:
         obj.x += 10 * dt
