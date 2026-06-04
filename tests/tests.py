@@ -18,16 +18,20 @@ def main(dt):
 
     for obj in xy:
         obj.x += 10 * dt
-        obj.y == 10 * dt
+        obj.y += 10 * dt
     if spin:
         x.angle += -10 * dt
         y.angle += 10 * dt
         lines.angle += 10 * dt
     x.x += 100 * dt
     y.y += 100 * dt
+    y.x += x.angle*dt
+    x.x += y.angle*dt
     if y.y > height or x.x > width:
         x.x = 0
         y.y = 0
+        y.x = 0
+        x.y = 0
 
 
 def click(event):
