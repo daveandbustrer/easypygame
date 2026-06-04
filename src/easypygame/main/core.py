@@ -60,10 +60,6 @@ def getWidth():
     return var._width
 
 
-def getDelta():
-    return var._dt
-
-
 def draw(screen):
     shapes = var._shapes
     pydraw = var._draw

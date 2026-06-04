@@ -62,7 +62,7 @@ def run():
             core.draw(screen)
 
             if funcs["main"]:
-                runf_func(funcs["main"], var._dt)
+                run_func(funcs["main"], var._dt)
 
             core.draw(screen)
 
