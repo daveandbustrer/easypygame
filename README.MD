@@ -10,6 +10,7 @@ A lightweight wrapper around `pygame` for a simpler game loop, drawing system, a
 - `run()` starts the game loop
 - `bind()` attaches update and mouse event callbacks
 - `graphics.static` provides simple shape objects for circles and rectangles
+- `graphics` provides additional shape types such as `polygon`
 
 ## Installation
 
@@ -37,6 +38,7 @@ epy.init(width=600, height=600, bg="white")
 # Create shapes
 x = epy.graphics.static.rect(100, 100, 100, 100)
 y = epy.graphics.static.circle(100, 100, 100)
+triangle = epy.graphics.polygon([(150, 150), (250, 150), (200, 50)], color="blue")
 
 # Access window size
 width = epy.getWidth()
@@ -139,6 +141,17 @@ Creates a circle shape.
 - `radius`: circle radius
 - `color`: fill color
 
+### `epy.graphics.polygon(points, width=0, angle=0, color="black")`
+
+Creates a polygon shape from a list of points.
+
+- `points`: a list of `(x, y)` tuples
+- `width`: line width; use `0` for a filled polygon
+- `angle`: rotation angle in degrees
+- `color`: fill or outline color
+
+Use `add_point(x, y)` to append additional vertices after creation.
+
 ### Shape Properties
 
 Shapes expose these properties:
@@ -148,6 +161,8 @@ Shapes expose these properties:
 - `color`
 - `width`, `height` for rectangles
 - `radius` for circles
+- `points` for `line` and `polygon` shapes
+- `angle` for rotated `polygon` shapes
 
 ## Event Parameter
 
