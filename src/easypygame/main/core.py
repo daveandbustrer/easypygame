@@ -1,66 +1,59 @@
+from __future__ import annotations
+
+from typing import Any, Callable, Tuple
 import pygame as pyg
 from . import variables as var
 
 
-# sets the variables
-def _set_pygame_variables():
+def _set_pygame_variables() -> None:
+    """Set the pygame modules and helpers used by the engine."""
     var._display = pyg.display
     time = var._time = pyg.time
     var._events = pyg.event
     var._clock = time.Clock
     var._draw = pyg.draw
     var._transform = pyg.transform
-    pass
 
 
-# initilizes the whole program
 def init(
-    width=300,
-    height=300,
-    bg="white",
-    background=None,
-    frame=60,
-):
-    # sets the abbr to the main word
+    width: int = 300,
+    height: int = 300,
+    bg: str = "white",
+    background: str | None = None,
+    frame: int = 60,
+) -> Tuple[int, int]:
+    """Initialize pygame and configure the display and timing values."""
     if background is None:
         background = bg
 
-    # display variable settings
     var._height = height
     var._width = width
     var._size = (width, height)
     var.background = background
     var.bg = background
     var.frames = frame
-
-    # misc variable settings
     var._isRunning = True
 
-    # checks if any modules fail to load in
     numpass, numfail = pyg.init()
-
-    # temperary until futher notice
     if numfail > 0:
-        print("pygames has failed to import all nessasary modules")
+        print("pygame failed to initialize some modules")
 
-    # sets the rest of the needed variables
     _set_pygame_variables()
-
-    # returns the passes and fails
-    return (numpass, numfail)
+    return numpass, numfail
 
 
-# gives the height to the user; not allowing any changes to the height
-def getHeight():
+def getHeight() -> int | None:
+    """Return the current window height after initialization."""
     return var._height
 
 
-# gives the width to the user; not allowing any changes to the width
-def getWidth():
+def getWidth() -> int | None:
+    """Return the current window width after initialization."""
     return var._width
 
 
-def draw(screen):
+def draw(screen: pyg.Surface) -> None:
+    """Draw all registered shapes to the given surface."""
     shapes = var._shapes
     pydraw = var._draw
     for obj in shapes:
@@ -81,15 +74,18 @@ def draw(screen):
             screen.blit(rotated, rect)
 
 
-def bind(funcType, func):
+def bind(funcType: str, func: Callable[..., Any]) -> None:
+    """Register a callback for a supported event type."""
     if funcType in var._func:
         var._func[funcType] = func
 
 
-def unbind(funcType):
+def unbind(funcType: str) -> None:
+    """Remove a callback for a supported event type."""
     if funcType in var._func:
         var._func[funcType] = None
 
 
-def stop():
+def stop() -> None:
+    """Stop the running game loop."""
     var._isRunning = False

@@ -1,35 +1,36 @@
-"""private"""
+from __future__ import annotations
 
-# running variables
-_isRunning = False
+from typing import Any, Callable, Dict, List, Optional, Tuple
 
-# displays variables
-_height = None
-_width = None
-_size = (_width, _height)
-_screen = None
+# private runtime state
+_isRunning: bool = False
+_height: Optional[int] = None
+_width: Optional[int] = None
+_size: Tuple[Optional[int], Optional[int]] = (_width, _height)
+_screen: Optional["pygame.Surface"] = None
 
-# pygame variables
-_display = None
-_time = None
-_events = None
-_clock = None
-_draw = None
-_surface = None
-_transform = None
+# pygame module helpers
+_display: Any = None
+_time: Any = None
+_events: Any = None
+_clock: Any = None
+_draw: Any = None
+_surface: Any = None
+_transform: Any = None
 
-# control variables
-_dt = 0
-_func = {
+# control state
+_dt: float = 0.0
+_func: Dict[str, Optional[Callable[..., Any]]] = {
     "main": None,
     "leftMouseDown": None,
     "rightMouseDown": None,
     "middleMouseDown": None,
     "mouseDown": None,
 }
-# shape variables
-_shapes = []
 
-""" public """
-background = None
-frames = 60
+# shapes registered for drawing
+_shapes: List[Any] = []
+
+# public configuration
+background: Optional[str] = None
+frames: int = 60

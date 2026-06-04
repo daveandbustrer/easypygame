@@ -1,5 +1,20 @@
+from __future__ import annotations
+
+from typing import Any
+
+
 class shape:
-    def __init__(self, x, y, width, height, angle=0, color="black"):
+    """Base class for drawable shapes."""
+
+    def __init__(
+        self,
+        x: int,
+        y: int,
+        width: int,
+        height: int,
+        angle: int = 0,
+        color: str = "black",
+    ) -> None:
         self.x = x
         self.y = y
         self.width = width
@@ -7,4 +22,4 @@ class shape:
         self.angle = angle
         self.color = color
         self._type = "shape"
-        pass
+        self._surf: Any = None
