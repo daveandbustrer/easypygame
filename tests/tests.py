@@ -1,8 +1,8 @@
 import easypygame as epy
 
 epy.init(width=600, height=600, frame=600)
-x = epy.graphics.rect(100, 100, 100, 100)
-y = epy.graphics.ellipse(100, 100, 100, 50)
+x = epy.graphics.square(100, 100, 100, 100)
+y = epy.graphics.circle(100, 100, 50)
 lines = epy.graphics.line(
     [],
 )
