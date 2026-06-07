@@ -21,6 +21,7 @@ def init(
     bg: str = "white",
     background: str | None = None,
     frame: int = 60,
+    busy: bool = False
 ) -> Tuple[int, int]:
     """Initialize pygame and configure the display and timing values."""
     if background is None:
@@ -33,6 +34,7 @@ def init(
     var.bg = background
     var.frames = frame
     var._isRunning = True
+    var._busy = busy
 
     numpass, numfail = pyg.init()
     if numfail > 0:
@@ -50,6 +52,9 @@ def getHeight() -> int | None:
 def getWidth() -> int | None:
     """Return the current window width after initialization."""
     return var._width
+
+def getFPS():
+    return var._fps
 
 
 def draw(screen: pyg.Surface) -> None:

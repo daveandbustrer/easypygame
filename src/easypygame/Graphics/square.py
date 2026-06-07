@@ -15,3 +15,4 @@ class square(rect):
         color: str = "black",
     ) -> None:
         super().__init__(x, y, radius, radius, angle, color)
+        self.radius = radius

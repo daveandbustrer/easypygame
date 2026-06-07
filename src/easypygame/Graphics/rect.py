@@ -4,15 +4,6 @@ import pygame as pyg
 from easypygame.main import variables as vars
 from .shape import shape
 
-
-def get_avg(v1: int, v2: int) -> float:
-    return (v1 + v2) / 2
-
-
-def get_sub(v1: int, v2: int) -> int:
-    return int(v2 - v1)
-
-
 class rect(shape):
     """A drawable rectangle shape."""
 

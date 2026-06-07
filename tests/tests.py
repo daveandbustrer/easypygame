@@ -1,6 +1,6 @@
 import easypygame as epy
 
-epy.init(width=600, height=600, frame=600)
+epy.init(width=600, height=600, frame=60)
 x = epy.graphics.square(100, 100, 100, 100)
 y = epy.graphics.circle(100, 100, 50)
 lines = epy.graphics.polygon(
@@ -13,7 +13,6 @@ spin = False
 
 def main(dt):
     global spin
-    print(dt)
     # xy.append(epy.graphics.ellipse(x.x + y.angle, x.y - x.angle, 100, 50))
 
     for obj in xy:
@@ -27,7 +26,7 @@ def main(dt):
     y.y += 100 * dt
     y.x += x.angle*dt
     x.x += y.angle*dt
-    if y.y > height or x.x > width:
+    if y.top > height or x.left > width:
         x.x = 0
         y.y = 0
         y.x = 0
@@ -41,7 +40,7 @@ def spin_click():
     global spin
     spin = True if not spin else False
 
-epy.bind("main", main)
+epy.bind("mainLoop", main)
 epy.bind("mouseDown", click)
 epy.bind("rightMouseDown",spin_click)
 epy.run()

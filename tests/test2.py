@@ -95,7 +95,7 @@ def left_click(event) -> None:
     create_click_circle(x, y)
 
 
-def right_click(event) -> None:
+def right_click() -> None:
     global background_toggle
     background_toggle = not background_toggle
 

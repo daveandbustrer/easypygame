@@ -16,10 +16,10 @@ def pygame_events() -> None:
         if event.type == pyg.QUIT:
             var._isRunning = False
         elif event.type == pyg.MOUSEBUTTONDOWN:
-            parameter = get_click_event(event)
             if event.button in (4, 5):
                 continue
 
+            parameter = get_click_parameter(event)
             run_event("mouseDown", parameter)
             if event.button == 1:
                 run_event("leftMouseDown", parameter)
@@ -27,11 +27,15 @@ def pygame_events() -> None:
                 run_event("middleMouseDown", parameter)
             elif event.button == 3:
                 run_event("rightMouseDown", parameter)
+        elif event.type == pyg.MOUSEWHEEL:
+            parameter = get_wheel_parameter(event)
+            run_event("mouseWheel",parameter)
 
 
 def loop_event() -> None:
     """Trigger a frame update callback each loop iteration."""
-    run_event("main", var._dt)
+    run_event("mainLoop", var._game_dt/1000)
+    run_event("phisicLoop",var._physic_dt/1000)
 
 
 def all_events() -> None:

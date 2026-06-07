@@ -8,6 +8,7 @@ _height: Optional[int] = None
 _width: Optional[int] = None
 _size: Tuple[Optional[int], Optional[int]] = (_width, _height)
 _screen: Optional["pygame.Surface"] = None
+_busy:bool = False
 
 # pygame module helpers
 _display: Any = None
@@ -19,18 +20,25 @@ _surface: Any = None
 _transform: Any = None
 
 # control state
-_dt: float = 0.0
 _func: Dict[str, Optional[Callable[..., Any]]] = {
-    "main": None,
+    "mainLoop": None,
+    "physicsLoop":None,
     "leftMouseDown": None,
     "rightMouseDown": None,
     "middleMouseDown": None,
     "mouseDown": None,
+    "mouseWheel":None,
 }
+
+#info states
+_fps: int|float = 0
+_game_dt: float = 0.0
+_physic_dt: float = 0.0
 
 # shapes registered for drawing
 _shapes: List[Any] = []
 
 # public configuration
-background: Optional[str] = None
-frames: int = 60
+background: str = "white"
+maxFrames: int = 60
+

@@ -13,12 +13,12 @@ def run_event(event: str, parameter: Any) -> None:
         run_func(callback, parameter)
 
 
-def get_click_event(event: Any) -> Union[Dict[str, Any], Tuple[int, int]]:
+def get_click_parameter(event: Any) -> Union[Dict[str, Any], Tuple[int, int]]:
     """Extract click data from a pygame event object."""
     parameter: Dict[str, Any] = {}
-    if hasattr(event, "touch") and event.touch:
+    if event.touch:
         parameter["touch"] = event.touch
-    if hasattr(event, "window") and event.window:
+    if event.window:
         parameter["window"] = event.window
 
     if parameter:
@@ -27,6 +27,24 @@ def get_click_event(event: Any) -> Union[Dict[str, Any], Tuple[int, int]]:
 
     return event.pos
 
+def get_wheel_parameter(event:any):
+    parameter: Dict[str, Any] = {}
+    if event.touch:
+        parameter["touch"] = event.touch
+    if event.window:
+        parameter["window"] = event.window
+    if event.flipped:
+        parameter["flipped"] = event.flipped
+    if event.x:
+        parameter["x"] = event.x if not event.precise_x in [1,-1] else event.precise_x
+    
+    y = event.y if not event.precise_y in [1,-1] else event.precise_y
+    if parameter:
+        parameter["y"] = y
+        return parameter
+
+    return y
+    
 
 def run_func(func: Callable[..., Any], parameter: Any) -> None:
     """Execute a callback with or without an argument."""

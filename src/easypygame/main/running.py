@@ -15,10 +15,22 @@ def run() -> None:
 
     while var._isRunning:
         screen.fill(var.background)
-        core.draw(screen)
+
         events.all_events()
+
         core.draw(screen)
+
         display.flip()
-        var._dt = clock.tick(var.frames) / 1000
+
+        if var._busy:
+            clock.tick_busy_loop()
+        else:
+            clock.tick(var.frames)
+
+        var._game_dt = clock.get_time()
+        var._physic_dt = clock.get_rawtime()
+
+        var._fps = clock.get_fps()
+
 
     pyg.quit()
