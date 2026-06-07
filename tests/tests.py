@@ -36,6 +36,8 @@ def main(dt):
 def click(event):
     x, y = event
     lines.add_point(x, y)
+def mouseUp(event):
+    print(event)
 def spin_click():
     global spin
     spin = True if not spin else False
@@ -43,4 +45,6 @@ def spin_click():
 epy.bind("mainLoop", main)
 epy.bind("mouseDown", click)
 epy.bind("rightMouseDown",spin_click)
+epy.bind("mouseMotion",mouseUp)
+
 epy.run()

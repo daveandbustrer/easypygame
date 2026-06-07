@@ -28,6 +28,13 @@ _func: Dict[str, Optional[Callable[..., Any]]] = {
     "middleMouseDown": None,
     "mouseDown": None,
     "mouseWheel":None,
+    "mouseUp":None,
+    "leftMouseUp":None,
+    "middleMouseUp":None,
+    "rightMouseUp":None,
+    "mouseMotion":None,
+    "keyDown":None,
+    "keyUp":None,
 }
 
 #info states
