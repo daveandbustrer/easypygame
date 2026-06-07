@@ -19,7 +19,7 @@ def run_click_events(upOrDown:str, event:any):
         run_event("rightMouse"+upOrDown, parameter)
 
 def run_key_event(upOrDown:str, event:any):
-    parameter = get_key_parameter()
+    parameter = get_key_parameter(event)
     run_event("key"+upOrDown,parameter)
 
 
@@ -56,7 +56,7 @@ def pygame_events() -> None:
 def loop_event() -> None:
     """Trigger a frame update callback each loop iteration."""
     run_event("mainLoop", var._game_dt/1000)
-    run_event("phisicLoop",var._physic_dt/1000)
+    run_event("physicsLoop", var._physic_dt/1000)
 
 
 def all_events() -> None:

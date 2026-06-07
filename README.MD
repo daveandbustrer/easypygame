@@ -1,4 +1,4 @@
-# Blu Easy Pygame
+﻿# Blu Easy Pygame
 
 A small wrapper for `pygame` that makes basic game setup easier.
 
@@ -6,21 +6,21 @@ A small wrapper for `pygame` that makes basic game setup easier.
 
 - a simple `init()` function for window setup
 - a single `run()` loop for frame updates
-- callback binding for mouse events and frame updates
-- ready-made shape classes for rectangles, circles, ellipses, lines, squares, and polygons
+- callback binding for frame and input events
+- shape classes for rectangles, circles, ellipses, lines, squares, and polygons
 
 ---
 
 ## Installation
 
-Install `pygame` first, then install this package in editable mode while developing:
+Install `pygame` first, then install the package locally for development:
 
 ```bash
 python -m pip install pygame
 python -m pip install -e .
 ```
 
-If the package is published on PyPI, install it with:
+If published on PyPI, install with:
 
 ```bash
 python -m pip install Blu_easy_pygame
@@ -37,10 +37,13 @@ import easypygame as epy
 epy.init(width=600, height=600, bg="white")
 
 # 2. Create shapes
-box = epy.graphics.static.rect(100, 100, 120, 80, color="red")
-circle = epy.graphics.static.circle(300, 200, 50, color="blue")
+box = epy.graphics.rect(100, 100, 120, 80, color="red")
+circle = epy.graphics.circle(300, 200, 50, color="blue")
 line = epy.graphics.line([(50, 50), (200, 120)], width=4, color="green")
-polygon = epy.graphics.polygon([(350, 100), (420, 180), (320, 220)], color="purple")
+polygon = epy.graphics.polygon(
+    [(350, 100), (420, 180), (320, 220)],
+    color="purple"
+)
 
 # 3. Frame update function
 
@@ -49,13 +52,13 @@ def update(dt):
     if box.left > epy.getWidth():
         box.right = 0
 
-# 4. Mouse event callback
+# 4. Mouse callback
 
 def on_left_click(event):
     print("Left click:", event)
 
 # 5. Bind callbacks
-epy.bind("main", update)
+epy.bind("mainLoop", update)
 epy.bind("leftMouseDown", on_left_click)
 
 # 6. Start the game loop
@@ -66,9 +69,9 @@ epy.run()
 
 ## Core API
 
-### `epy.init(width=300, height=300, bg="white", background=None, frame=60)`
+### `epy.init(width=300, height=300, bg="white", background=None, frame=60, busy=False)`
 
-Sets up `pygame`, creates the window size, and configures the background color.
+Initialize `pygame`, configure the display, and set the background color.
 
 Returns:
 
@@ -78,9 +81,10 @@ Arguments:
 
 - `width` — window width in pixels
 - `height` — window height in pixels
-- `bg` — default background color
+- `bg` — background color
 - `background` — alias for `bg`
 - `frame` — target frames per second
+- `busy` — optional busy-mode flag
 
 Example:
 
@@ -90,9 +94,9 @@ epy.init(width=800, height=600, bg="black", frame=60)
 
 ### `epy.run()`
 
-Starts the main game loop.
+Start the main game loop. Shapes created with `epy.graphics` are drawn automatically each frame.
 
-The loop continues until the player closes the window or `epy.stop()` is called.
+The loop continues until the window closes or `epy.stop()` is called.
 
 Example:
 
@@ -102,15 +106,21 @@ epy.run()
 
 ### `epy.bind(funcType, func)`
 
-Registers a callback for a supported event type.
+Register a callback for a supported event type.
 
 Supported `funcType` values:
 
-- `main` — called every frame, receives `dt` milliseconds as a parameter
-- `mouseDown` — called when any mouse button is pressed
-- `leftMouseDown` — called when the left mouse button is pressed
-- `middleMouseDown` — called when the middle mouse button is pressed
-- `rightMouseDown` — called when the right mouse button is pressed
+- `mainLoop` — called each frame, receives `dt` in seconds
+- `physicsLoop` — called each frame, receives physics delta time in seconds
+- `phisicLoop` — legacy alias for `physicsLoop`
+- `mouseDown` — any mouse button press
+- `mouseUp` — any mouse button release
+- `leftMouseDown`, `leftMouseUp`
+- `middleMouseDown`, `middleMouseUp`
+- `rightMouseDown`, `rightMouseUp`
+- `mouseMotion` — mouse movement
+- `mouseWheel` — wheel scrolling
+- `keyDown`, `keyUp`
 
 Example:
 
@@ -118,10 +128,12 @@ Example:
 def update(dt):
     print("Delta time:", dt)
 
-epy.bind("main", update)
+epy.bind("mainLoop", update)
 ```
 
-Example mouse callback:
+Callbacks may accept a single parameter or no parameters.
+
+Mouse callback example:
 
 ```python
 def on_click(event):
@@ -132,7 +144,7 @@ epy.bind("leftMouseDown", on_click)
 
 ### `epy.unbind(funcType)`
 
-Removes the callback for the given event type.
+Remove a bound callback.
 
 Example:
 
@@ -142,7 +154,7 @@ epy.unbind("leftMouseDown")
 
 ### `epy.stop()`
 
-Stops the game loop from inside a callback.
+Stop the game loop from inside a callback.
 
 Example:
 
@@ -150,12 +162,12 @@ Example:
 def quit_game(dt):
     epy.stop()
 
-epy.bind("main", quit_game)
+epy.bind("mainLoop", quit_game)
 ```
 
 ### `epy.getWidth()` and `epy.getHeight()`
 
-Return the window width and height set by `init()`.
+Return the window width and height.
 
 Example:
 
@@ -164,63 +176,71 @@ width = epy.getWidth()
 height = epy.getHeight()
 ```
 
-### `epy.getDelta()`
+### `epy.getFPS()`
 
-Returns the time in seconds since the last frame.
+Return the current frame rate value.
 
 Example:
 
 ```python
-dt = epy.getDelta()
+fps = epy.getFPS()
 ```
 
-### `epy.background`
+### `epy.getGameTime()`
 
-Global background color. You can modify it during the game.
+Return the elapsed game time in milliseconds.
 
 Example:
 
 ```python
-epy.background = "black"
+elapsed = epy.getGameTime()
 ```
 
-### `epy.frames`
+### `epy.getBackground()` and `epy.setBackground(color)`
 
-Global frame rate limit. Set it before calling `epy.run()`.
+Read or change the current background color.
 
 Example:
 
 ```python
-epy.frames = 30
+current = epy.getBackground()
+epy.setBackground("black")
+```
+
+### `epy.sleep(milliseconds, processOS=True)`
+
+Pause execution for the given time.
+
+Example:
+
+```python
+epy.sleep(500)
 ```
 
 ---
 
 ## Shapes
 
-There are two ways to create shapes:
+Create shapes using `epy.graphics`. Shapes are drawn automatically each frame.
 
-- `epy.graphics.static` for basic static shapes
-- `epy.graphics` for direct shape classes, including advanced shapes like `line` and `polygon`
-
-### `epy.graphics.static.rect(x, y, width, height, color="black")`
+### `epy.graphics.rect(x, y, width, height, angle=0, color="black")`
 
 Create a rectangle.
 
 Example:
 
 ```python
-rect = epy.graphics.static.rect(50, 50, 120, 80, color="red")
+rect = epy.graphics.rect(50, 50, 120, 80, angle=0, color="red")
 ```
 
-### `epy.graphics.static.circle(x, y, radius, color="black")`
+### `epy.graphics.circle(x, y, radius, color="black")`
 
 Create a circle.
 
 Example:
 
 ```python
-circle = epy.graphics.static.circle(200, 200, 50, color="blue")
+circle = epy.graphics.circle(200, 200, 50, color="blue")
 ```
 
 ### `epy.graphics.ellipse(x, y, width, height, angle=0, color="black")`
@@ -231,16 +251,6 @@ Example:
 
 ```python
 egg = epy.graphics.ellipse(300, 150, 160, 80, angle=0, color="green")
-```
-
-### `epy.graphics.rect(x, y, width, height, angle=0, color="black")`
-
-Create a rotated rectangle.
-
-Example:
-
-```python
-box = epy.graphics.rect(250, 250, 120, 80, angle=45, color="orange")
 ```
 
 ### `epy.graphics.square(x, y, radius, angle=0, color="black")`
@@ -255,7 +265,7 @@ square = epy.graphics.square(150, 300, 50, angle=30, color="purple")
 
 ### `epy.graphics.line(points, width=1, color="black")`
 
-Create a polyline from points.
+Create a line path from points.
 
 Example:
 
@@ -265,7 +275,7 @@ line = epy.graphics.line([(50, 400), (200, 450), (300, 380)], width=3, color="ye
 
 ### `epy.graphics.polygon(points, width=0, angle=0, color="black")`
 
-Create a polygon with a list of points.
+Create a polygon from a list of points.
 
 Example:
 
@@ -286,12 +296,12 @@ triangle.add_point(380, 50)
 
 ## Shape Properties
 
-Most shapes expose these properties:
+Most shapes support these properties:
 
 - `x`, `y`
 - `left`, `right`, `top`, `bottom`
 - `width`, `height` for rectangles and ellipses
-- `radius` for circles
+- `radius` for circles and squares
 - `points` for lines and polygons
 - `angle` for rotated shapes
 - `color`
@@ -306,21 +316,23 @@ print(circle.radius)
 
 ---
 
-## Mouse event data
+## Event data
 
-Mouse callbacks receive either a position tuple or a dictionary.
+Mouse callbacks receive a parameter dictionary with values like:
 
-When a simple click event is available, the callback may receive:
+- `pos` — mouse position
+- `rel` — relative movement
+- `buttons` — button state
+- `touch` — touch input data
+- `window` — window event data
+- `x`, `y` — wheel delta values
 
-```python
-(100, 200)
-```
+Keyboard callbacks receive:
 
-If touch or window metadata is present, the callback receives a dictionary:
-
-```python
-{"pos": (100, 200), "touch": ..., "window": ...}
-```
+- `unicode`
+- `key`
+- `mod`
+- `scancode`
 
 Example:
 
@@ -331,44 +343,31 @@ def on_click(event):
 
 ---
 
-## Tips
-
-- Use `epy.bind("main", update)` to run code every frame.
-- Use `epy.bind("leftMouseDown", callback)` for left-click interactions.
-- Use `epy.stop()` to exit the loop from inside a callback.
-- Use `epy.getWidth()` and `epy.getHeight()` to keep objects inside the window.
-
----
-
 ## Full example
 
 ```python
 import easypygame as epy
 
-# Initialize
 epy.init(width=640, height=480, bg="lightgray")
 
-# Create shapes
-player = epy.graphics.static.rect(50, 50, 50, 50, color="blue")
+player = epy.graphics.rect(50, 50, 50, 50, color="blue")
 enemy = epy.graphics.polygon(
     [(400, 100), (460, 180), (340, 180)],
     color="red"
 )
 
-# Frame update
 
 def update(dt):
     player.x += 120 * dt
     if player.left > epy.getWidth():
         player.right = 0
 
-# Click event
 
 def on_click(event):
     print("Click event:", event)
 
-# Bind and run
-epy.bind("main", update)
+
+epy.bind("mainLoop", update)
 epy.bind("leftMouseDown", on_click)
 epy.run()
 ```

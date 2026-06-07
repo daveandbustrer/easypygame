@@ -3,9 +3,6 @@ import easypygame as epy
 epy.init(width=600, height=600, frame=60)
 x = epy.graphics.square(100, 100, 100, 100)
 y = epy.graphics.circle(100, 100, 50)
-lines = epy.graphics.polygon(
-    [],
-)
 width = epy.getWidth()
 height = epy.getWidth()
 xy = []
@@ -34,10 +31,14 @@ def main(dt):
 
 
 def click(event):
-    x, y = event
-    lines.add_point(x, y)
+    x, y = event["pos"]
 def mouseUp(event):
     print(event)
+def keyUp(event):
+    print(event)
+    epy.setBackground("black")
+def keyDown():
+    epy.setBackground("white")
 def spin_click():
     global spin
     spin = True if not spin else False
@@ -46,5 +47,7 @@ epy.bind("mainLoop", main)
 epy.bind("mouseDown", click)
 epy.bind("rightMouseDown",spin_click)
 epy.bind("mouseMotion",mouseUp)
+epy.bind("keyUp",keyUp)
+epy.bind("keyDown",keyDown)
 
 epy.run()

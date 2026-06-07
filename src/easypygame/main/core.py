@@ -59,11 +59,17 @@ def getFPS():
 def getGameTime():
     return var._time.get_ticks()
 
+def getBackground():
+    return var.background
+def setBackground(color:str|tuple[int,int,int]):
+    var.background = color
+
 def sleep(miliseconds:int,processOS:bool = True):
     if processOS:
         var._time.wait(miliseconds)
     else:
         var._time.delay(miliseconds)
+    
 
 
 
@@ -93,12 +99,16 @@ def draw(screen: pyg.Surface) -> None:
 
 def bind(funcType: str, func: Callable[..., Any]) -> None:
     """Register a callback for a supported event type."""
+    if funcType == "phisicLoop":
+        funcType = "physicsLoop"
     if funcType in var._func:
         var._func[funcType] = func
 
 
 def unbind(funcType: str) -> None:
     """Remove a callback for a supported event type."""
+    if funcType == "phisicLoop":
+        funcType = "physicsLoop"
     if funcType in var._func:
         var._func[funcType] = None
 

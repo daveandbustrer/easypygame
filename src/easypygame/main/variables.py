@@ -46,6 +46,6 @@ _physic_dt: float = 0.0
 _shapes: List[Any] = []
 
 # public configuration
-background: str = "white"
+background: str = None
 maxFrames: int = 60
 

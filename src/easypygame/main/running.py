@@ -14,12 +14,11 @@ def run() -> None:
     screen = var._screen = display.set_mode(var._size)
 
     while var._isRunning:
-        screen.fill(var.background)
 
         events.all_events()
-
+        
+        screen.fill(var.background)
         core.draw(screen)
-
         display.flip()
 
         if var._busy:
