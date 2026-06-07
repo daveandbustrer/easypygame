@@ -56,6 +56,18 @@ def getWidth() -> int | None:
 def getFPS():
     return var._fps
 
+def getGameTime():
+    return var._time.get_ticks()
+
+def sleep(miliseconds:int,processOS:bool = True):
+    if processOS:
+        var._time.wait(miliseconds)
+    else:
+        var._time.delay(miliseconds)
+
+
+
+
 
 def draw(screen: pyg.Surface) -> None:
     """Draw all registered shapes to the given surface."""
