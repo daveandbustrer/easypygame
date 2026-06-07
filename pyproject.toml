@@ -3,22 +3,24 @@ requires = ["setuptools>=68", "setuptools_scm"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "Blu_easy_pygame"
+name = "Blu_easypygame"
 dynamic = ["version"]
 authors = [
-  { name="Praneel Shanmugam", email="praneelcatchu@gmail.com" },
+  { name = "Praneel Shanmugam", email = "praneelcatchu@gmail.com" },
 ]
-description = "a easier way to use pygames"
+description = "An easier way to use pygame"
 readme = "README.md"
 requires-python = ">=3.9"
+license = { file = "LICENSE" }
+
 classifiers = [
     "Programming Language :: Python :: 3",
     "Operating System :: OS Independent",
 ]
-license = "MIT"
 
 [tool.setuptools.packages.find]
 where = ["src"]
 
 [tool.setuptools_scm]
-write_to = "src/easypygame/_version.py"
+write_to = "src/Blu_easypygame/_version.py"
+local_scheme = "no-local-version"
