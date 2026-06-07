@@ -85,13 +85,13 @@ def main(dt: float) -> None:
 
     # Toggle background color softly.
     if background_toggle:
-        epy.background = (8, 12, 36)
+        epy.setBackground((8, 12, 36))
     else:
-        epy.background = (12, 14, 26)
+        epy.setBackground((12, 14, 26))
 
 
 def left_click(event) -> None:
-    x, y = event
+    x, y = event["pos"]
     create_click_circle(x, y)
 
 
@@ -100,7 +100,7 @@ def right_click() -> None:
     background_toggle = not background_toggle
 
 
-epy.bind("main", main)
+epy.bind("mainLoop", main)
 epy.bind("leftMouseDown", left_click)
 epy.bind("rightMouseDown", right_click)
 
