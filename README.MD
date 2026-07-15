@@ -176,7 +176,3 @@ epy.bind("mainLoop", update)
 epy.bind("leftMouseDown", on_click)
 epy.run()
 ```
-
----
-
-If you spot any remaining inconsistencies or want the README formatted for PyPI/long description, I can update it accordingly.
