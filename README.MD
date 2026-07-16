@@ -1,9 +1,3 @@
-Got you — here’s a **more casual, coder‑friendly README rewrite** that keeps everything clear but drops the formal “documentation voice.” This feels like something you'd see on GitHub from a dev who built a neat helper library for Pygame.
-
-I’ll keep it tight, friendly, and aimed at people who already know how to code.
-
----
-
 # Blu Easy Pygame
 
 Blu Easy Pygame is a tiny wrapper around `pygame` that removes some setup things. i did this so i can get rid of setup for projects I could do since I have a certain style of coding I do and this project mixes fetures
