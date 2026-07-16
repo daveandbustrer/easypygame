@@ -1,6 +1,6 @@
 # Blu Easy Pygame
 
-Blu Easy Pygame is a tiny wrapper around `pygame` that removes some setup things. i did this so i can get rid of setup for projects I could do since I have a certain style of coding I do and this project mixes fetures
+Blu Easy Pygame is a tiny wrapper around `pygame` that removes some setup things. i did this so i can get rid of setup for projects I could do since I have a certain style of coding I do and this project mixes features of differnt thing like brython and cmu academy to simplify coding
 
 # Install
 ```bash
