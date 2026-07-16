@@ -146,11 +146,11 @@ Common ones:
 
 shapes like circles,lines, and rect also have:
 - rect
-- - `width`, `height`
+-- `width`, `height`
 - circle
-- - `radius`
+-- `radius`
 - lines
-- - `points`
+-- `points`
 
 Example:
 
