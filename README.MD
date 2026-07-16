@@ -145,12 +145,12 @@ Common ones:
 - `angle`
 
 shapes like circles,lines, and rect also have:
-rect
-- `width`, `height`
-circle
-- `radius`
-lines
-- `points`
+- rect
+- - `width`, `height`
+- circle
+- - `radius`
+- lines
+- - `points`
 
 Example:
 
