@@ -1,7 +1,8 @@
 LICENSE
 pyproject.toml
 Blu_easypygame/__init__.py
-Blu_easypygame/mod.py
+Blu_easypygame/core.py
+Blu_easypygame/var.py
 Blu_easypygame.egg-info/PKG-INFO
 Blu_easypygame.egg-info/SOURCES.txt
 Blu_easypygame.egg-info/dependency_links.txt

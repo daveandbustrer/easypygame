@@ -12,5 +12,5 @@ dependencies = [
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["pygame", "Blu_easypygame.*"]
+include = ["Blu_easypygame", "Blu_easypygame.*"]
 namespaces = false
