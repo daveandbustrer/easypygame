@@ -1,0 +1,14 @@
+LICENSE
+README.MD
+README.md
+pyproject.toml
+src/Blu_easypygame/__init__.py
+src/Blu_easypygame/_version.py
+src/Blu_easypygame/module.py
+src/blu_easypygame.egg-info/PKG-INFO
+src/blu_easypygame.egg-info/SOURCES.txt
+src/blu_easypygame.egg-info/dependency_links.txt
+src/blu_easypygame.egg-info/scm_file_list.json
+src/blu_easypygame.egg-info/scm_version.json
+src/blu_easypygame.egg-info/top_level.txt
+tests/test.py
