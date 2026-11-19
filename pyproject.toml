@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "Blu-easypygame"
+version = "0.1.0"
+description = "A helper library for pygame"
+dependencies = [
+    "pygame-ce",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["pygame", "Blu_easypygame.*"]
+namespaces = false

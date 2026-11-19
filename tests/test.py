@@ -1,3 +1,3 @@
 import Blu_easypygame
 
-print(Blu_easypygame.add(9.8))
+Blu_easypygame.init(300, 300)

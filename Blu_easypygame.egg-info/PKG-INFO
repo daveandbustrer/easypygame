@@ -1,0 +1,7 @@
+Metadata-Version: 2.4
+Name: Blu-easypygame
+Version: 0.1.0
+Summary: A helper library for pygame
+License-File: LICENSE
+Requires-Dist: pygame-ce
+Dynamic: license-file
