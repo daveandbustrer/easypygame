@@ -2,17 +2,25 @@ from . import var
 import pygame
 
 
-class line:
+class Line:
     def __init__(
         self,
-        start: list[var.num] | tuple[var.num, var.num],
-        end: list[var.num] | tuple[var.num, var.num],
+        x1: var.num,
+        y1: var.num,
+        x2: var.num,
+        y2: var.num,
         color: var.color = "black",
     ) -> None:
-        self.start = start
-        self.end = end
+        self.x1 = x1
+        self.y1 = x1
+        self.x2 = x2
+        self.y2 = y2
         self.color = color
+        self.index = len(var.draw)
+        var.draw.append(self)
 
-    def draw(self):
+    def _draw(self):
         if var.screen:
-            pygame.draw.line(var.screen, self.color, self.start, self.end)
+            pygame.draw.line(
+                var.screen, self.color, (self.x1, self.y1), (self.x2, self.y2)
+            )

@@ -1,3 +1,12 @@
-from .core import init, run, bind, unbind  # type: ignore
-from .var import height, width, bg  # type: ignore
-from .shape import line  # type: ignore
+from .core import init, run, bind, unbind
+from .shape import Line
+from . import window
+
+__all__ = [
+    "init",
+    "run",
+    "bind",
+    "unbind",
+    "Line",
+    "window",
+]

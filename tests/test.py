@@ -1,23 +1,17 @@
-import Blu_easypygame as esypy
+from Blu_easypygame import *
 
-esypy.init(300, 300)
-x: int = 10
-y: int = 100
-line = esypy.line((x, y), (y, x))
+init(300, 300)
+line = Line(150, 100, 150, 100)
+dx: int = 1
 
 
 def swap():
-    global x
-    print("swap worked")
-    line.draw()
-    line.start = (x, y)
-    x += 1
+    global dx
+    print(window.width, window.height)
+    line.x2 += dx
+    if line.x2 > 190 or line.x2 < 10:
+        dx *= -1
 
 
-def main():
-    esypy.bind("main", swap)
-    print("swap failed maybe")
-
-
-esypy.bind("main", main)
-esypy.run()
+bind("main", swap)
+run()

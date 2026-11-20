@@ -5,14 +5,14 @@ varBool = bool | None
 color = str | tuple[int, int, int]
 num = int | float
 
-bg: color = "white"
+bg: color
 
 init: bool = False
 
 running: varBool
 
-width: varInt = 0
-height: varInt = 0
+width: varInt
+height: varInt
 
 functions = {
     "main": None,
@@ -24,4 +24,6 @@ display = pygame.display
 
 screen: pygame.Surface
 
-fps: int = 60
+fps: int
+
+draw: list[object] = []
