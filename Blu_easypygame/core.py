@@ -15,18 +15,32 @@ def init(
     var.bg = bg
     var.clock
     var.fps = 60
-    x = True
-    while x:
+
+
+def bind(functype: str, func: function | None):
+    if functype in var.functions and (
+        isinstance(func, type(bind)) or isinstance(func, type(None))
+    ):
+        var.functions[functype] = func  # type: ignore
+
+
+def unbind(functype: str):
+    bind(functype, None)
+
+
+def run():
+    while var.running:
         # poll for events
         # pygame.QUIT event means the user clicked X to close your window
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                x = False
+                var.running = False
 
         # fill the screen with a color to wipe away anything from last frame
         var.screen.fill(var.bg)
 
-        # RENDER YOUR GAME HERE
+        if var.functions["main"]:
+            var.functions["main"]()
 
         # flip() the display to put your work on screen
         var.display.flip()
